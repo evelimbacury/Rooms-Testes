@@ -1,0 +1,29 @@
+# Dicionário de Dados
+Um dicionário de dados é uma ferramenta usada para definir e documentar os termos e conceitos que são utilizados em um sistema, aplicativo ou banco de
+dados.
+
+A seguir consta o dicionário de dados do sistema com todos os dados de suma importância para a compreenção do banco de dados.
+
+| **Nome do Dado**     | **Tipo de Dado** | **Descrição**                                    | **Formato**      | **Restrições**                                           | **Relacionamentos**                                              |
+| -------------------- | ---------------- | ------------------------------------------------ | ---------------- | -------------------------------------------------------- | ---------------------------------------------------------------- |
+| ID da Disciplina     | Integer          | Identificador único da disciplina                | N/A              | Primary key, autoincrement                               | Relacionado à tabela `Allocation` como Foreign Key               |
+| Nome da Disciplina   | String           | Nome da disciplina                               | Texto            | Máx. 30 caracteres                                       | Não se aplica                                                    |
+| Código da Disciplina | String           | Código da disciplina                             | Texto            | Máx. 10 caracteres, valores únicos                       | Não se aplica                                                    |
+| ID do Espaço         | Integer          | Identificador único do espaço físico             | N/A              | Primary key, autoincrement                               | Relacionado à tabela `Allocation` como Foreign Key               |
+| Andar                | Integer          | Andar do espaço físico                           | Número inteiro   | Valores permitidos: inteiros                             | Não se aplica                                                    |
+| Número               | Integer          | Número do espaço físico                          | Número inteiro   | Valores permitidos: inteiros                             | Não se aplica                                                    |
+| Bloco                | String           | Bloco do espaço físico                           | Texto            | Máx. 1 caractere (A-Z)                                   | Não se aplica                                                    |
+| Tipo do Espaço       | Boolean          | Tipo de espaço (1 para sala de aula, 0 para lab) | Verdadeiro/Falso | 1 ou 0                                                   | Não se aplica                                                    |
+| ID do Professor      | Integer          | Identificador único do professor                 | N/A              | Primary key, autoincrement                               | Relacionado à tabela `Allocation` como Foreign Key               |
+| SIAPE                | String           | Código SIAPE do professor                        | Texto            | Máx. 8 caracteres                                        | Não se aplica                                                    |
+| Nome                 | String           | Nome do professor ou usuário                     | Texto            | Máx. 30 caracteres                                       | Não se aplica                                                    |
+| Sobrenome            | String           | Sobrenome do professor ou usuário                | Texto            | Máx. 30 caracteres                                       | Não se aplica                                                    |
+| ID do usuário        | Integer          | Identificador único do usuário                   | N/A              | Primary key, autoincrement                               | Não se aplica                                                    |
+| Email                | String           | Endereço de e-mail do usuário                    | Texto            | Máx. 60 caracteres, valores únicos                       | Não se aplica                                                    |
+| Senha                | String           | Senha do usuário                                 | Texto            | Máx. 30 caracteres                                       | Não se aplica                                                    |
+| ID da Alocação       | Integer          | Identificador único da alocação                  | N/A              | Primary key, autoincrement                               | Relacionado às tabelas `Discipline`, `PhysicalSpace` e `Teacher` |
+| Dia da semana        | String           | Dias da semana para a alocação                   | Texto            | Máx. 10 caracteres (e.g., "Segunda-feira")               | Não se aplica                                                    |
+| Horário              | String           | Horário da alocação                              | Texto            | Máx. 10 caracteres (e.g., "08:00-09:00")                 | Não se aplica                                                    |
+| Disciplina           | Foreign Key      | Disciplina associada à alocação                  | N/A              | Relacionado à tabela `Discipline` (on_delete=CASCADE)    | Relacionamento com a tabela `Discipline`                         |
+| Espaço               | Foreign Key      | Espaço físico associado à alocação               | N/A              | Relacionado à tabela `PhysicalSpace` (on_delete=CASCADE) | Relacionamento com a tabela `PhysicalSpace`                      |
+| Professor            | Foreign Key      | Professor associado à alocação                   | N/A              | Relacionado à tabela `Teacher` (on_delete=CASCADE)       | Relacionamento com a tabela `Teacher`                            |
